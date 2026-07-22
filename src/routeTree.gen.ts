@@ -9,38 +9,165 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ShellRouteImport } from './routes/_shell'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShellSettingsRouteImport } from './routes/_shell.settings'
+import { Route as ShellReportsRouteImport } from './routes/_shell.reports'
+import { Route as ShellLabsRouteImport } from './routes/_shell.labs'
+import { Route as ShellEsgRouteImport } from './routes/_shell.esg'
+import { Route as ShellDashboardRouteImport } from './routes/_shell.dashboard'
+import { Route as ShellComputersRouteImport } from './routes/_shell.computers'
+import { Route as ShellAnalyticsRouteImport } from './routes/_shell.analytics'
+import { Route as ShellAiPredictionRouteImport } from './routes/_shell.ai-prediction'
+import { Route as ShellComputersIdRouteImport } from './routes/_shell.computers.$id'
 
+const ShellRoute = ShellRouteImport.update({
+  id: '/_shell',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShellSettingsRoute = ShellSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellReportsRoute = ShellReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellLabsRoute = ShellLabsRouteImport.update({
+  id: '/labs',
+  path: '/labs',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellEsgRoute = ShellEsgRouteImport.update({
+  id: '/esg',
+  path: '/esg',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellDashboardRoute = ShellDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellComputersRoute = ShellComputersRouteImport.update({
+  id: '/computers',
+  path: '/computers',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellAnalyticsRoute = ShellAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellAiPredictionRoute = ShellAiPredictionRouteImport.update({
+  id: '/ai-prediction',
+  path: '/ai-prediction',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellComputersIdRoute = ShellComputersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ShellComputersRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-prediction': typeof ShellAiPredictionRoute
+  '/analytics': typeof ShellAnalyticsRoute
+  '/computers': typeof ShellComputersRouteWithChildren
+  '/dashboard': typeof ShellDashboardRoute
+  '/esg': typeof ShellEsgRoute
+  '/labs': typeof ShellLabsRoute
+  '/reports': typeof ShellReportsRoute
+  '/settings': typeof ShellSettingsRoute
+  '/computers/$id': typeof ShellComputersIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-prediction': typeof ShellAiPredictionRoute
+  '/analytics': typeof ShellAnalyticsRoute
+  '/computers': typeof ShellComputersRouteWithChildren
+  '/dashboard': typeof ShellDashboardRoute
+  '/esg': typeof ShellEsgRoute
+  '/labs': typeof ShellLabsRoute
+  '/reports': typeof ShellReportsRoute
+  '/settings': typeof ShellSettingsRoute
+  '/computers/$id': typeof ShellComputersIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_shell': typeof ShellRouteWithChildren
+  '/_shell/ai-prediction': typeof ShellAiPredictionRoute
+  '/_shell/analytics': typeof ShellAnalyticsRoute
+  '/_shell/computers': typeof ShellComputersRouteWithChildren
+  '/_shell/dashboard': typeof ShellDashboardRoute
+  '/_shell/esg': typeof ShellEsgRoute
+  '/_shell/labs': typeof ShellLabsRoute
+  '/_shell/reports': typeof ShellReportsRoute
+  '/_shell/settings': typeof ShellSettingsRoute
+  '/_shell/computers/$id': typeof ShellComputersIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ai-prediction'
+    | '/analytics'
+    | '/computers'
+    | '/dashboard'
+    | '/esg'
+    | '/labs'
+    | '/reports'
+    | '/settings'
+    | '/computers/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ai-prediction'
+    | '/analytics'
+    | '/computers'
+    | '/dashboard'
+    | '/esg'
+    | '/labs'
+    | '/reports'
+    | '/settings'
+    | '/computers/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/_shell'
+    | '/_shell/ai-prediction'
+    | '/_shell/analytics'
+    | '/_shell/computers'
+    | '/_shell/dashboard'
+    | '/_shell/esg'
+    | '/_shell/labs'
+    | '/_shell/reports'
+    | '/_shell/settings'
+    | '/_shell/computers/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ShellRoute: typeof ShellRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_shell': {
+      id: '/_shell'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ShellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +175,112 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_shell/settings': {
+      id: '/_shell/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof ShellSettingsRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/reports': {
+      id: '/_shell/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ShellReportsRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/labs': {
+      id: '/_shell/labs'
+      path: '/labs'
+      fullPath: '/labs'
+      preLoaderRoute: typeof ShellLabsRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/esg': {
+      id: '/_shell/esg'
+      path: '/esg'
+      fullPath: '/esg'
+      preLoaderRoute: typeof ShellEsgRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/dashboard': {
+      id: '/_shell/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof ShellDashboardRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/computers': {
+      id: '/_shell/computers'
+      path: '/computers'
+      fullPath: '/computers'
+      preLoaderRoute: typeof ShellComputersRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/analytics': {
+      id: '/_shell/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof ShellAnalyticsRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/ai-prediction': {
+      id: '/_shell/ai-prediction'
+      path: '/ai-prediction'
+      fullPath: '/ai-prediction'
+      preLoaderRoute: typeof ShellAiPredictionRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/computers/$id': {
+      id: '/_shell/computers/$id'
+      path: '/$id'
+      fullPath: '/computers/$id'
+      preLoaderRoute: typeof ShellComputersIdRouteImport
+      parentRoute: typeof ShellComputersRoute
+    }
   }
 }
 
+interface ShellComputersRouteChildren {
+  ShellComputersIdRoute: typeof ShellComputersIdRoute
+}
+
+const ShellComputersRouteChildren: ShellComputersRouteChildren = {
+  ShellComputersIdRoute: ShellComputersIdRoute,
+}
+
+const ShellComputersRouteWithChildren = ShellComputersRoute._addFileChildren(
+  ShellComputersRouteChildren,
+)
+
+interface ShellRouteChildren {
+  ShellAiPredictionRoute: typeof ShellAiPredictionRoute
+  ShellAnalyticsRoute: typeof ShellAnalyticsRoute
+  ShellComputersRoute: typeof ShellComputersRouteWithChildren
+  ShellDashboardRoute: typeof ShellDashboardRoute
+  ShellEsgRoute: typeof ShellEsgRoute
+  ShellLabsRoute: typeof ShellLabsRoute
+  ShellReportsRoute: typeof ShellReportsRoute
+  ShellSettingsRoute: typeof ShellSettingsRoute
+}
+
+const ShellRouteChildren: ShellRouteChildren = {
+  ShellAiPredictionRoute: ShellAiPredictionRoute,
+  ShellAnalyticsRoute: ShellAnalyticsRoute,
+  ShellComputersRoute: ShellComputersRouteWithChildren,
+  ShellDashboardRoute: ShellDashboardRoute,
+  ShellEsgRoute: ShellEsgRoute,
+  ShellLabsRoute: ShellLabsRoute,
+  ShellReportsRoute: ShellReportsRoute,
+  ShellSettingsRoute: ShellSettingsRoute,
+}
+
+const ShellRouteWithChildren = ShellRoute._addFileChildren(ShellRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ShellRoute: ShellRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
