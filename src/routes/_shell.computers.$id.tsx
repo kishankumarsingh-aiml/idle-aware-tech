@@ -81,7 +81,7 @@ function Detail() {
       <Card className="mt-4">
         <CardHeader><CardTitle>Installed Software</CardTitle></CardHeader>
         <CardContent className="flex flex-wrap gap-2">
-          {c.software.map((s) => <Badge key={s} variant="secondary">{s}</Badge>)}
+          {c.software.map((s: string) => <Badge key={s} variant="secondary">{s}</Badge>)}
         </CardContent>
       </Card>
     </div>
