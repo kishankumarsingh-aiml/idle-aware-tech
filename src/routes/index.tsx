@@ -12,8 +12,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "SIDMS — Smart Idle Device Management System" },
       { name: "description", content: "AI-powered energy saving platform that detects idle computers in labs and reduces electricity, CO₂, and cost." },
-      { property: "og:title", content: "SIDMS — AI Energy Saving for Computer Labs" },
-      { property: "og:description", content: "Detect idle PCs with AI. Save energy, reduce CO₂, cut costs across every lab." },
+      { property: "og:title", content: "SIDMS — Smart Idle Device Management System" },
+      { property: "og:description", content: "AI-powered energy saving platform that detects idle computers in labs and reduces electricity, CO₂, and cost." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

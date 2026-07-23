@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SIDMS — AI Energy Saving for Computer Labs" },
-      { name: "description", content: "Smart Idle Device Management System detects idle computers with AI to save electricity, cut CO₂, and reduce operational costs." },
+      { title: "SIDMS — Smart Idle Device Management System" },
+      { name: "description", content: "AI-powered energy saving platform that detects idle computers in labs and reduces electricity, CO₂, and cost." },
       { name: "author", content: "SIDMS" },
-      { property: "og:title", content: "SIDMS — Smart Idle Device Management" },
-      { property: "og:description", content: "AI-powered energy intelligence for schools, universities, and offices." },
+      { property: "og:title", content: "SIDMS — Smart Idle Device Management System" },
+      { property: "og:description", content: "AI-powered energy saving platform that detects idle computers in labs and reduces electricity, CO₂, and cost." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "SIDMS — Smart Idle Device Management System" },
+      { name: "twitter:description", content: "AI-powered energy saving platform that detects idle computers in labs and reduces electricity, CO₂, and cost." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/466aaf72-17ac-4406-ac69-584ae42ccbde" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/466aaf72-17ac-4406-ac69-584ae42ccbde" },
     ],
     links: [
       {
